@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  service:
+    image: ecommerce-identity-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecommerce-identity-service
+    ports:
+      - 1000:8080
+    env_file: .env
+    environment:
+      - GOOGLE_REDIRECT_URI=http://localhost:1000/api/v1/oauth/authorize/google/callback
+      - USER_SERVICE_BASE_URI=http://host.docker.internal:1001
+      - LOGIN_UI_BASE_URL=http://localhost:2000
+      - JWT_SECRET=DockerTestJWTFakeSecret
+    restart: on-failure
