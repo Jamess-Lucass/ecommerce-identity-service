@@ -25,6 +25,7 @@ type Claim struct {
 	FirstName string `json:"firstName,omitempty"`
 	LastName  string `json:"lastName,omitempty"`
 	Email     string `json:"email,omitempty"`
+	Role      string `json:"role,omitempty"`
 	jwt.RegisteredClaims
 }
 
@@ -37,6 +38,7 @@ func (s *JWTService) CreateToken(user User) (string, error) {
 		FirstName: user.FirstName,
 		LastName:  user.LastName,
 		Email:     user.Email,
+		Role:      user.Role,
 		RegisteredClaims: jwt.RegisteredClaims{
 			Subject:   user.Id.String(),
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
