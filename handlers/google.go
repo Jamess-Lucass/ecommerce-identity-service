@@ -168,11 +168,17 @@ func (s *Server) GoogleAuthorizeCallback(c *fiber.Ctx) error {
 		cookie := new(fiber.Cookie)
 		cookie.Name = "x-access-token"
 		cookie.Value = jwt
-		cookie.Domain = "localhost"
 		cookie.HTTPOnly = true
 		cookie.Secure = true
 		cookie.SameSite = "None"
 		cookie.Expires = time.Now().Add(24 * time.Hour)
+
+		if strings.EqualFold(os.Getenv("ENVIRONMENT"), "production") {
+			cookie.Domain = "jameslucas.uk"
+		} else {
+			cookie.Domain = "localhost"
+		}
+
 		c.Cookie(cookie)
 
 		return c.Status(fiber.StatusPermanentRedirect).Redirect(c.Query("state"))
@@ -183,11 +189,17 @@ func (s *Server) GoogleAuthorizeCallback(c *fiber.Ctx) error {
 	cookie := new(fiber.Cookie)
 	cookie.Name = "x-access-token"
 	cookie.Value = jwt
-	cookie.Domain = "localhost"
 	cookie.HTTPOnly = true
 	cookie.Secure = true
 	cookie.SameSite = "None"
 	cookie.Expires = time.Now().Add(24 * time.Hour)
+
+	if strings.EqualFold(os.Getenv("ENVIRONMENT"), "production") {
+		cookie.Domain = "jameslucas.uk"
+	} else {
+		cookie.Domain = "localhost"
+	}
+
 	c.Cookie(cookie)
 
 	return c.Status(fiber.StatusPermanentRedirect).Redirect(c.Query("state"))
