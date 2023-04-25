@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-identity-service-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: ecommerce-identity-service-container
+          env:
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: value
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-oauth-secret
+                  key: clientId
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: google-oauth-secret
+                  key: clientSecret
+            - name: GOOGLE_REDIRECT_URI
+              value: https://identity.jameslucas.uk/api/v1/oauth/authorize/google/callback
+            - name: ENVIRONMENT
+              value: Production
+            - name: LOGIN_UI_BASE_URL
+              value: https://login.jameslucas.uk
+            - name: USER_SERVICE_BASE_URI
+              value: http://ecommerce-user-service-service.default.svc:80

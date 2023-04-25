@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: default
+
+images:
+  - name: ghcr.io/jamess-lucass/ecommerce-identity-service
+    newTag: "main"
+
+resources:
+  - ../../base
+  - google-oauth-secret.yml
+
+patches:
+  - path: patches/deployment.yml
+    target:
+      kind: Deployment
+      name: ecommerce-identity-service-deployment
