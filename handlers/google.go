@@ -90,7 +90,7 @@ func (s *Server) GoogleAuthorizeCallback(c *fiber.Ctx) error {
 
 	s.logger.Sugar().Infof("google user :%v", googleUser)
 
-	temp, _ := s.jwtService.CreateToken(services.User{})
+	serviceJwt, _ := s.jwtService.CreateToken(services.User{Role: "Administrator"})
 
 	uri, err := url.Parse(fmt.Sprintf("%s/api/v1/users", os.Getenv("USER_SERVICE_BASE_URI")))
 	if err != nil {
@@ -106,7 +106,7 @@ func (s *Server) GoogleAuthorizeCallback(c *fiber.Ctx) error {
 		s.logger.Sugar().Errorf("%v", err)
 		return c.Redirect(fmt.Sprintf("%s?error=server_error", os.Getenv("LOGIN_UI_BASE_URL")))
 	}
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", temp))
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", serviceJwt))
 	res, err := client.Do(req)
 	if err != nil {
 		s.logger.Sugar().Errorf("%v", err)
@@ -142,7 +142,7 @@ func (s *Server) GoogleAuthorizeCallback(c *fiber.Ctx) error {
 			return c.Redirect(fmt.Sprintf("%s?error=server_error", os.Getenv("LOGIN_UI_BASE_URL")))
 		}
 		req.Header.Set("Content-Type", "application/json")
-		req.Header.Add("Authorization", fmt.Sprintf("bearer %s", temp))
+		req.Header.Add("Authorization", fmt.Sprintf("bearer %s", serviceJwt))
 
 		response, err := client.Do(req)
 		if err != nil {
