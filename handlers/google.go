@@ -30,8 +30,7 @@ var client = &http.Client{
 }
 
 type Response[T any] struct {
-	Context string `json:"@odata.context"`
-	Value   []T    `json:"value"`
+	Value []T `json:"value"`
 }
 
 type GoogleUser struct {
@@ -98,7 +97,7 @@ func (s *Server) GoogleAuthorizeCallback(c *fiber.Ctx) error {
 	}
 
 	params := url.Values{}
-	params.Add("$filter", fmt.Sprintf("email eq '%s'", googleUser.Email))
+	params.Add("filter", fmt.Sprintf("email eq '%s'", googleUser.Email))
 	uri.RawQuery = params.Encode()
 
 	req, err := http.NewRequest("GET", uri.String(), nil)
