@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 
@@ -29,6 +30,14 @@ func (s *Server) Me(c *fiber.Ctx) error {
 		return c.Status(400).JSON(err.Error())
 	}
 	defer res.Body.Close()
+
+	if res.StatusCode >= 400 {
+		bytes, err := io.ReadAll(res.Body)
+		if err != nil {
+			return c.Status(400).JSON(err.Error())
+		}
+		return c.Status(400).JSON(string(bytes))
+	}
 
 	var user services.User
 	if err := json.NewDecoder(res.Body).Decode(&user); err != nil {
