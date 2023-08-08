@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/go-playground/validator/v10 v10.15.0
-	github.com/gofiber/contrib/fiberzap v0.0.0-20230219091647-e01cfe399a9b
+	github.com/gofiber/contrib/fiberzap v1.0.2
 	github.com/gofiber/fiber/v2 v2.42.0
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/google/uuid v1.3.0
