@@ -7,7 +7,7 @@ require (
 	github.com/gofiber/contrib/fiberzap v1.0.2
 	github.com/gofiber/fiber/v2 v2.48.0
 	github.com/golang-jwt/jwt/v4 v4.5.0
-	github.com/google/uuid v1.3.0
+	github.com/google/uuid v1.3.1
 	go.uber.org/zap v1.25.0
 	golang.org/x/oauth2 v0.11.0
 )
