@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ecommerce-identity-service-ingress
+  name: ecommerce-identity-service
   annotations:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ecommerce-identity-service-service
+                name: ecommerce-identity-service
                 port:
                   number: 80

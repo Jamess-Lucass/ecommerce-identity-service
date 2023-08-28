@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecommerce-identity-service-deployment
+  name: ecommerce-identity-service
   labels:
-    app: ecommerce-identity-service-deployment
+    app: ecommerce-identity-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ecommerce-identity-service-deployment
+      app: ecommerce-identity-service
   template:
     metadata:
       labels:
-        app: ecommerce-identity-service-deployment
+        app: ecommerce-identity-service
     spec:
       containers:
-        - name: ecommerce-identity-service-container
+        - name: ecommerce-identity-service
           image: ghcr.io/jamess-lucass/ecommerce-identity-service:latest
           imagePullPolicy: Always
           ports:
@@ -28,3 +28,10 @@ spec:
             limits:
               memory: 200Mi
               cpu: 100m
+      volumes:
+      - name: secrets-store01-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "azure-keyvault"

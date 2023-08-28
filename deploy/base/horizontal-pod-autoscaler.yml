@@ -1,12 +1,12 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: ecommerce-identity-service-hpa
+  name: ecommerce-identity-service
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: ecommerce-identity-service-deployment
+    name: ecommerce-identity-service
   minReplicas: 1
   maxReplicas: 3
   metrics:

@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: default
 
 resources:
+  - external-secret.yml
   - deployment.yml
   - service.yml
   - ingress.yml

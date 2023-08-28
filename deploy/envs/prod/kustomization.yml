@@ -8,10 +8,9 @@ images:
 
 resources:
   - ../../base
-  - google-oauth-secret.yml
 
 patches:
   - path: patches/deployment.yml
     target:
       kind: Deployment
-      name: ecommerce-identity-service-deployment
+      name: ecommerce-identity-service

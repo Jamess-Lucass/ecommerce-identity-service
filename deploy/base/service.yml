@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: ecommerce-identity-service-service
+  name: ecommerce-identity-service
 spec:
   selector:
-    app: ecommerce-identity-service-deployment
+    app: ecommerce-identity-service
   ports:
     - protocol: TCP
       targetPort: 8080
