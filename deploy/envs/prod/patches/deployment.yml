@@ -30,4 +30,4 @@ spec:
             - name: LOGIN_UI_BASE_URL
               value: https://login.jameslucas.uk
             - name: USER_SERVICE_BASE_URI
-              value: http://ecommerce-user-service-service.default.svc:80
+              value: http://ecommerce-user-service.default.svc:80
