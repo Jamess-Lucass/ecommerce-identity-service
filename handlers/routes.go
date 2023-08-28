@@ -9,7 +9,13 @@ import (
 
 func (s *Server) Start() error {
 	f := fiber.New()
-	f.Use(cors.New(cors.Config{AllowOrigins: "*", AllowCredentials: true, MaxAge: 0}))
+	f.Use(cors.New(cors.Config{
+		AllowOriginsFunc: func(origin string) bool {
+			return true
+		},
+		AllowCredentials: true,
+		MaxAge:           0,
+	}))
 
 	f.Use(fiberzap.New(fiberzap.Config{
 		Logger: s.logger,
