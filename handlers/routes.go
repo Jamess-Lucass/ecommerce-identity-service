@@ -21,6 +21,8 @@ func (s *Server) Start() error {
 		Logger: s.logger,
 	}))
 
+	f.Get("/api/healthz", s.Healthz)
+
 	f.Get("/api/v1/oauth/authorize/google", s.RedirectGoogleAuthorize)
 	f.Get("/api/v1/oauth/authorize/google/callback", s.GoogleAuthorizeCallback)
 
