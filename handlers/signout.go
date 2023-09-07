@@ -25,5 +25,5 @@ func (s *Server) Signout(c *fiber.Ctx) error {
 
 	c.Cookie(cookie)
 
-	return c.SendStatus(204)
+	return c.SendStatus(fiber.StatusNoContent)
 }

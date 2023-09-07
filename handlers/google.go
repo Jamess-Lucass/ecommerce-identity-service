@@ -25,10 +25,6 @@ var oauthGoogleConfig = &oauth2.Config{
 	Endpoint:     google.Endpoint,
 }
 
-var client = &http.Client{
-	Timeout: time.Second * 30,
-}
-
 type Response[T any] struct {
 	Value []T `json:"value"`
 }
@@ -51,7 +47,10 @@ type CreateUserRequest struct {
 func (s *Server) RedirectGoogleAuthorize(c *fiber.Ctx) error {
 	uri, err := url.Parse(oauthGoogleConfig.Endpoint.AuthURL)
 	if err != nil {
-		return c.Status(400).JSON(fiber.Map{"code": 400, "message": "Could not parse url"})
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"code":    fiber.StatusBadRequest,
+			"message": "Could not parse url",
+		})
 	}
 
 	params := url.Values{}
@@ -106,7 +105,7 @@ func (s *Server) GoogleAuthorizeCallback(c *fiber.Ctx) error {
 		return c.Redirect(fmt.Sprintf("%s?error=server_error", os.Getenv("LOGIN_UI_BASE_URL")))
 	}
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", serviceJwt))
-	res, err := client.Do(req)
+	res, err := tracingClient.Do(req.WithContext(c.Context()))
 	if err != nil {
 		s.logger.Sugar().Errorf("%v", err)
 		return c.Redirect(fmt.Sprintf("%s?error=server_error", os.Getenv("LOGIN_UI_BASE_URL")))
@@ -143,14 +142,14 @@ func (s *Server) GoogleAuthorizeCallback(c *fiber.Ctx) error {
 		req.Header.Set("Content-Type", "application/json")
 		req.Header.Add("Authorization", fmt.Sprintf("bearer %s", serviceJwt))
 
-		response, err := client.Do(req)
+		response, err := tracingClient.Do(req.WithContext(c.Context()))
 		if err != nil {
 			s.logger.Sugar().Errorf("%v", err)
 			return c.Redirect(fmt.Sprintf("%s?error=server_error", os.Getenv("LOGIN_UI_BASE_URL")))
 		}
 		defer response.Body.Close()
 
-		if response.StatusCode >= 400 {
+		if response.StatusCode >= fiber.StatusBadRequest {
 			bytes, _ := io.ReadAll(response.Body)
 			s.logger.Sugar().Errorf("%v", string(bytes))
 			return c.Redirect(fmt.Sprintf("%s?error=server_error", os.Getenv("LOGIN_UI_BASE_URL")))

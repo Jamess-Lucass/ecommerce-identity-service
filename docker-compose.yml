@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    labels:
+      logging/enabled: "true"
     container_name: ecommerce-identity-service
     ports:
       - 1000:8080
@@ -15,4 +17,10 @@ services:
       - USER_SERVICE_BASE_URI=http://host.docker.internal:1001
       - LOGIN_UI_BASE_URL=http://localhost:2000
       - JWT_SECRET=DockerTestJWTFakeSecret
+      - ENVIRONMENT=development
+      - LOG_LEVEL=info
+      - ELASTIC_APM_SERVER_URL=http://host.docker.internal:8200
+      - ELASTIC_APM_SERVICE_NAME=identity-service
+      - ELASTIC_APM_EXIT_SPAN_MIN_DURATION=1us
+      - ELASTIC_APM_CAPTURE_BODY=all
     restart: on-failure
