@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: ecommerce-identity-service
+        elastic.logging/enabled: "true"
     spec:
       containers:
         - name: ecommerce-identity-service
