@@ -13,21 +13,39 @@ spec:
                 secretKeyRef:
                   name: ecommerce-identity-service
                   key: jwt_secret
+
             - name: GOOGLE_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: ecommerce-identity-service
                   key: client_id
+
             - name: GOOGLE_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: ecommerce-identity-service
                   key: client_secret
+
             - name: GOOGLE_REDIRECT_URI
               value: https://identity.jameslucas.uk/api/v1/oauth/authorize/google/callback
+
             - name: ENVIRONMENT
               value: Production
+
             - name: LOGIN_UI_BASE_URL
               value: https://login.jameslucas.uk
+
             - name: USER_SERVICE_BASE_URI
               value: http://ecommerce-user-service.default.svc:80
+
+            - name: ELASTIC_APM_SERVER_URL
+              value: http://apm.elastic.svc:8200
+
+            - name: ELASTIC_APM_EXIT_SPAN_MIN_DURATION
+              value: 1us
+
+            - name: ELASTIC_APM_CAPTURE_BODY
+              value: all
+
+            - name: ELASTIC_APM_SERVICE_NAME
+              value: ecommerce-identity-service
