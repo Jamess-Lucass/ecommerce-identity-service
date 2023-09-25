@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/go-playground/validator/v10 v10.15.4
-	github.com/gofiber/contrib/fiberzap/v2 v2.1.0
+	github.com/gofiber/contrib/fiberzap/v2 v2.1.1
 	github.com/gofiber/fiber/v2 v2.49.2
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/google/uuid v1.3.1
@@ -37,7 +37,7 @@ require (
 	github.com/prometheus/procfs v0.0.0-20190425082905-87a4384529e0 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.49.0 // indirect
+	github.com/valyala/fasthttp v1.50.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	go.elastic.co/apm/module/apmfasthttp/v2 v2.4.4 // indirect
 	go.elastic.co/fastjson v1.1.0 // indirect
