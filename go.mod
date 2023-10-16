@@ -10,7 +10,7 @@ require (
 	github.com/google/uuid v1.3.1
 	go.elastic.co/apm/module/apmfiber/v2 v2.4.4
 	go.elastic.co/apm/module/apmhttp/v2 v2.4.4
-	go.elastic.co/apm/v2 v2.4.4
+	go.elastic.co/apm/v2 v2.4.5
 	go.elastic.co/ecszap v1.0.2
 	go.uber.org/zap v1.26.0
 	golang.org/x/oauth2 v0.12.0
