@@ -8,9 +8,9 @@ require (
 	github.com/gofiber/fiber/v2 v2.49.2
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/google/uuid v1.3.1
-	go.elastic.co/apm/module/apmfiber/v2 v2.4.4
-	go.elastic.co/apm/module/apmhttp/v2 v2.4.4
-	go.elastic.co/apm/v2 v2.4.4
+	go.elastic.co/apm/module/apmfiber/v2 v2.4.5
+	go.elastic.co/apm/module/apmhttp/v2 v2.4.5
+	go.elastic.co/apm/v2 v2.4.5
 	go.elastic.co/ecszap v1.0.2
 	go.uber.org/zap v1.26.0
 	golang.org/x/oauth2 v0.12.0
@@ -39,7 +39,7 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.49.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	go.elastic.co/apm/module/apmfasthttp/v2 v2.4.4 // indirect
+	go.elastic.co/apm/module/apmfasthttp/v2 v2.4.5 // indirect
 	go.elastic.co/fastjson v1.1.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.13.0 // indirect
