@@ -3,7 +3,7 @@ module github.com/Jamess-Lucass/ecommerce-identity-service
 go 1.20
 
 require (
-	github.com/go-playground/validator/v10 v10.15.4
+	github.com/go-playground/validator/v10 v10.16.0
 	github.com/gofiber/contrib/fiberzap/v2 v2.1.0
 	github.com/gofiber/fiber/v2 v2.49.2
 	github.com/golang-jwt/jwt/v4 v4.5.0
