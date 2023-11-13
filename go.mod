@@ -13,7 +13,7 @@ require (
 	go.elastic.co/apm/v2 v2.4.4
 	go.elastic.co/ecszap v1.0.2
 	go.uber.org/zap v1.26.0
-	golang.org/x/oauth2 v0.12.0
+	golang.org/x/oauth2 v0.14.0
 )
 
 require (
@@ -42,10 +42,10 @@ require (
 	go.elastic.co/apm/module/apmfasthttp/v2 v2.4.4 // indirect
 	go.elastic.co/fastjson v1.1.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.13.0 // indirect
-	golang.org/x/net v0.15.0 // indirect
-	golang.org/x/sys v0.12.0 // indirect
-	golang.org/x/text v0.13.0 // indirect
+	golang.org/x/crypto v0.15.0 // indirect
+	golang.org/x/net v0.18.0 // indirect
+	golang.org/x/sys v0.14.0 // indirect
+	golang.org/x/text v0.14.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	howett.net/plist v0.0.0-20181124034731-591f970eefbb // indirect
